@@ -126,6 +126,9 @@ optimizer progress. No experiment-tracking account is required.
 
 ## MPC evaluation
 
+First [download the pretrained checkpoints](#checkpoints) from Zenodo and place
+them in the repository's `checkpoints/` directory.
+
 ```bash
 python eval.py --config-name pusht
 python eval.py --config-name tworoom
@@ -200,6 +203,17 @@ episode-disjoint 80/20 split, train-only target normalization, and evaluate
 
 ## Checkpoints
 
+**[Download the pretrained checkpoints from Zenodo][zenodo-checkpoints].**
+
+Download the weights and accompanying configurations, then extract or place
+them under `checkpoints/` in the repository root. Each environment must have
+both `weights.pt` and `config.yaml`, for example:
+
+```text
+checkpoints/cube/weights.pt
+checkpoints/cube/config.yaml
+```
+
 The released checkpoints and their reported metrics are listed below.
 Each checkpoint directory contains `weights.pt` and a portable `config.yaml`.
 The five weights total approximately 404 MiB. See
@@ -213,17 +227,17 @@ the encoder, predictor, context pooler, and reconstruction decoder.
 Success rates are evaluated over 50 episodes and reported as mean ± standard
 deviation of episode outcomes.
 
-| Environment | Checkpoint | MPC success rate (%) ↑ |
+| Environment | Checkpoint directory after download | MPC success rate (%) ↑ |
 | --- | --- | ---: |
-| Push-T | [weights](checkpoints/pusht/weights.pt) | 96.0 ± 19.6 |
-| TwoRoom | [weights](checkpoints/tworoom/weights.pt) | 98.0 ± 14.0 |
-| Reacher | [weights](checkpoints/reacher/weights.pt) | 90.0 ± 30.0 |
-| Cube | [weights](checkpoints/cube/weights.pt) | 80.0 ± 40.0 |
+| Push-T | `checkpoints/pusht/` | 96.0 ± 19.6 |
+| TwoRoom | `checkpoints/tworoom/` | 98.0 ± 14.0 |
+| Reacher | `checkpoints/reacher/` | 90.0 ± 30.0 |
+| Cube | `checkpoints/cube/` | 80.0 ± 40.0 |
 
 ### Bridge-v2: offline latent planning
 
-Offline metrics for the [Bridge-v2 checkpoint](checkpoints/bridge_v2/weights.pt),
-averaged over 50 trajectories:
+Offline metrics for the [Bridge-v2 checkpoint][zenodo-checkpoints], averaged
+over 50 trajectories. Place its files in `checkpoints/bridge_v2/`.
 
 | Metric | Value |
 | --- | ---: |
@@ -245,8 +259,8 @@ model, _, config = load_local_policy_model("checkpoints/cube")
 model.eval()
 ```
 
-The `.gitattributes` file marks checkpoint weights for Git LFS. Install Git LFS
-and run `git lfs install` before adding them to a publication repository.
+Checkpoints are distributed through Zenodo; Git LFS is not required to download
+or use them.
 
 ## Repository layout
 
@@ -286,3 +300,5 @@ requires prior written permission from the relevant copyright holders. Direct
 permission requests to the repository maintainers. This is a source-available
 noncommercial release. Upstream MIT-covered code retains its original rights
 and notice in [LICENSES/UPSTREAM-MIT.txt](LICENSES/UPSTREAM-MIT.txt).
+
+[zenodo-checkpoints]: https://zenodo.org/records/22853413?preview=1&token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImNjMTMzYmJhLWQwYzAtNDA3NS05Mzk3LTVkMTU1ZjExYzA1OSIsImRhdGEiOnt9LCJyYW5kb20iOiI5Y2I3N2U2ODM4ZjdmMmZkYzY4YjI0ZmVlZDk1NWY3ZCJ9.GPGLc6S_OkLz5Jz0HhWLA0f6gawoDAfZdJECvRh4hoOWdLdxLlcJaXSL5oH7TGlYgIXACKAIAEXHtT0cFA6jbw
