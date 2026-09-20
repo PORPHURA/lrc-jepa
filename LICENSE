@@ -1,0 +1,50 @@
+LRC-JEPA Noncommercial Research License 1.0
+
+Copyright (c) 2026 LRC-JEPA authors. All rights reserved except as granted below.
+
+1. Scope. This license applies to the original LRC-JEPA contributions in this
+release, its documentation and configuration files, and the pretrained model
+parameters in checkpoints/ (collectively, the Materials), to the extent that the
+copyright holders have the authority to license them. Third-party materials
+remain subject to their own licenses. In particular, the upstream software
+covered by LICENSES/UPSTREAM-MIT.txt retains its MIT license and permissions.
+This license does not revoke any rights previously granted under other licenses.
+
+2. Noncommercial grant. Subject to these terms, you may use, reproduce, study,
+modify, and redistribute the Materials and adaptations of them solely for
+noncommercial purposes, including noncommercial research, education, and
+personal experimentation. You must retain this license, copyright and attribution
+notices, identify your modifications, and provide this license with every copy
+or adaptation you distribute. You may not offer the Materials or adaptations
+under terms that permit their commercial use without the copyright holders'
+separate written permission.
+
+3. Commercial permission. Any commercial use requires PRIOR WRITTEN PERMISSION
+from the copyright holders. Commercial use includes use primarily intended for
+commercial advantage or monetary compensation; sale, licensing, or paid access;
+incorporation in a commercial product or service; and research, development,
+training, fine-tuning, distillation, or deployment directed toward a commercial
+application. This requirement also applies to modified, fine-tuned, distilled,
+or otherwise adapted versions of the supplied model parameters. An organization's
+educational or nonprofit status does not exempt an otherwise commercial use.
+Permission requests must be directed to the LRC-JEPA repository maintainers,
+who must obtain authorization from the relevant copyright holders. Silence or
+public availability does not constitute commercial permission.
+
+4. Research publications and independent rights. You may publish noncommercial
+research findings and evaluation results produced using the Materials, with
+appropriate attribution. This license does not claim ownership of your outputs,
+restrict facts or ideas independently of the Materials, or limit fair use or
+other statutory rights. It grants no rights to third-party datasets, third-party
+models, trademarks, or patents. No endorsement by the authors is implied.
+
+5. Termination. The permissions granted by this license terminate automatically
+if you violate its terms. Commercial rights may be granted only by a separate
+written agreement with the relevant copyright holders.
+
+6. Disclaimer. THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+AND NONINFRINGEMENT. TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE COPYRIGHT HOLDERS
+AND CONTRIBUTORS SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY,
+WHETHER IN CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION
+WITH THE MATERIALS OR THEIR USE.

@@ -1,0 +1,139 @@
+model_mode: lrc_jepa
+num_workers: 4
+train_split: 0.9
+seed: 3072
+img_size: 224
+embed_dim: 192
+patch_dim: 588
+num_patches: 256
+u_num_queries: 16
+u_mode: per_frame
+history_size: 3
+trainer:
+  max_epochs: 20
+  max_steps: 1000000
+  devices: 1
+  accelerator: gpu
+  precision: bf16-mixed
+  gradient_clip_val: 1.0
+  num_sanity_val_steps: 0
+  log_every_n_steps: 100
+preprocess:
+  resize_images: false
+loader:
+  batch_size: 192
+  num_workers: ${num_workers}
+  persistent_workers: true
+  prefetch_factor: 2
+  pin_memory: false
+val_loader:
+  num_workers: ${num_workers}
+  persistent_workers: false
+  prefetch_factor: 2
+optimizer:
+  type: AdamW
+  lr: 0.0005
+  weight_decay: 0.001
+scheduler:
+  type: LinearWarmupCosineAnnealingLR
+  warmup_steps: 1000
+  max_steps: 1000000
+  warmup_start_lr: 0.0
+  eta_min: 0.0
+num_preds: 1
+performance:
+  matmul_precision: high
+  cudnn_benchmark: true
+loss:
+  sigreg:
+    weight: 0.05
+    kwargs:
+      knots: 17
+      num_proj: 1024
+  u:
+    weight: 0.05
+    kwargs:
+      invariance_weight: 25.0
+      variance_weight: 25.0
+      covariance_weight: 1.0
+      variance_target: 1.0
+  rec:
+    weight: 0.2
+    patch_size: 14
+    detach_latents: false
+data:
+  dataset:
+    num_steps: 4
+    frameskip: 5
+    name: bridge_v2_clean.npy
+    keys_to_load:
+    - pixels
+    - action
+    keys_to_cache:
+    - action
+model:
+  _target_: jepa.JEPA
+  model_mode: lrc_jepa
+  u_mode: per_frame
+  encoder:
+    _target_: stable_pretraining.backbone.utils.vit_hf
+    size: tiny
+    patch_size: 14
+    image_size: 224
+    pretrained: false
+    use_mask_token: false
+    attn_implementation: sdpa
+  predictor:
+    _target_: module.ARPredictor
+    num_frames: 3
+    input_dim: 192
+    hidden_dim: 192
+    output_dim: 192
+    depth: 6
+    heads: 16
+    mlp_dim: 2048
+    dim_head: 64
+    dropout: 0.1
+    emb_dropout: 0.0
+  action_encoder:
+    _target_: module.Embedder
+    input_dim: 35
+    emb_dim: 192
+  projector:
+    _target_: module.MLP
+    input_dim: 192
+    output_dim: 192
+    hidden_dim: 2048
+    norm_fn:
+      _target_: torch.nn.BatchNorm1d
+      _partial_: true
+  pred_proj:
+    _target_: module.MLP
+    input_dim: 192
+    output_dim: 192
+    hidden_dim: 2048
+    norm_fn:
+      _target_: torch.nn.BatchNorm1d
+      _partial_: true
+  u_pooler:
+    _target_: module.AttentivePool
+    input_dim: 192
+    output_dim: 192
+    num_queries: 16
+    heads: 4
+    mlp_dim: 768
+    dropout: 0.0
+  decoder:
+    _target_: module.CrossAttentionDecoder
+    latent_dim: 192
+    patch_dim: 588
+    num_patches: 256
+    decoder_dim: 256
+    depth: 3
+    heads: 8
+    mlp_dim: 1024
+    dropout: 0.0
+hydra:
+  output_subdir: null
+  run:
+    dir: outputs/bridge_v2/${now:%Y-%m-%d}/${now:%H-%M-%S}

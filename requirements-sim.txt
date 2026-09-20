@@ -1,0 +1,11 @@
+# Add these for simulated MPC and Cube kinematic probe targets.
+-r requirements.txt
+gymnasium==1.2.3
+pygame==2.6.1
+pymunk==7.2.0
+shapely==2.1.2
+ogbench==1.2.1
+minigrid==3.1.0
+mujoco==3.9.0
+dm-control==1.0.41
+opencv-python==4.13.0.92

@@ -1,0 +1,16 @@
+LRC-JEPA publication release
+
+Original LRC-JEPA contributions and pretrained checkpoints:
+Copyright (c) 2026 LRC-JEPA authors.
+Commercial use requires prior written permission. See LICENSE.
+
+The research code builds on the JEPA world-model codebase distributed with:
+Copyright (c) 2026 Lucas Maes, MIT License.
+The complete original notice is preserved in LICENSES/UPSTREAM-MIT.txt.
+Upstream MIT-covered portions retain their MIT permissions.
+
+External dependencies, including stable-worldmodel, stable-pretraining,
+PyTorch, Transformers, and the simulation environments, are installed separately
+and retain their respective licenses. No datasets or third-party pretrained
+backbone checkpoints are bundled. The supplied ViT configurations initialize
+the backbone from scratch (pretrained: false).

@@ -1,0 +1,59 @@
+defaults:
+- solver: cem
+- _self_
+world:
+  env_name: swm/Bridge-v2
+  num_envs: ${eval.num_eval}
+  max_episode_steps: ???
+seed: 42
+policy: checkpoints/bridge_v2
+dataset:
+  name: bridge_v2_clean.npy
+  stats: ${eval.dataset_name}
+  keys_to_cache:
+  - action
+plan_config:
+  horizon: 5
+  receding_horizon: 5
+  action_block: 5
+eval:
+  offline_latent: true
+  num_eval: 50
+  num_random_actions: 300
+  recall_ks:
+  - 1
+  - 5
+  - 10
+  cem_std_floor: 0.05
+  goal_offset_steps: 25
+  eval_budget: 50
+  img_size: 224
+  dataset_name: bridge_v2_clean
+  callables: []
+  probe_labels: null
+  probe_output_filename: probe_results.txt
+  probe_dataset: ${dataset.name}
+  probe_train_fraction: 0.8
+  probe_feature_sets:
+  - z
+  - u
+  - zu
+  probe_u_reduction: mean
+  probe_kinds:
+  - linear
+  - mlp
+  probe_ridge_alpha: 0.001
+  probe_mlp_hidden:
+  - 256
+  - 256
+  probe_mlp_max_iter: 1000
+  probe_mlp_lr: 0.0005
+  probe_min_train: 20
+  probe_min_test: 10
+output:
+  filename: bridge_v2_results.txt
+  directory: results
+hydra:
+  output_subdir: null
+  run:
+    dir: results/hydra/${now:%Y-%m-%d}/${now:%H-%M-%S}
