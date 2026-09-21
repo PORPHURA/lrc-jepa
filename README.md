@@ -224,15 +224,15 @@ the encoder, predictor, context pooler, and reconstruction decoder.
 
 ### Simulated environments: MPC
 
-Success rates are evaluated over 50 episodes and reported as mean ± standard
-deviation of episode outcomes.
+We report the highest recorded MPC success rate for the best checkpoint in
+each environment. Each evaluation uses 50 episodes.
 
-| Environment | Checkpoint directory after download | MPC success rate (%) ↑ |
+| Environment | Checkpoint directory after download | Highest MPC success rate (%) ↑ |
 | --- | --- | ---: |
-| Push-T | `checkpoints/pusht/` | 96.0 ± 19.6 |
-| TwoRoom | `checkpoints/tworoom/` | 98.0 ± 14.0 |
-| Reacher | `checkpoints/reacher/` | 90.0 ± 30.0 |
-| Cube | `checkpoints/cube/` | 80.0 ± 40.0 |
+| Push-T | `checkpoints/pusht/` | 96.0 |
+| TwoRoom | `checkpoints/tworoom/` | 98.0 |
+| Reacher | `checkpoints/reacher/` | 90.0 |
+| Cube | `checkpoints/cube/` | 80.0 |
 
 ### Bridge-v2: offline latent planning
 
