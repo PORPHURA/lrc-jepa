@@ -224,10 +224,10 @@ the encoder, predictor, context pooler, and reconstruction decoder.
 
 ### Simulated environments: MPC
 
-We report the highest recorded MPC success rate for the best checkpoint in
-each environment. Each evaluation uses 50 episodes.
+We report MPC success rates averaged over three repetitions, each using 50
+evaluation episodes per environment.
 
-| Environment | Checkpoint directory after download | Highest MPC success rate (%) ↑ |
+| Environment | Checkpoint directory after download | Mean MPC success rate (%) ↑ |
 | --- | --- | ---: |
 | Push-T | `checkpoints/pusht/` | 96.0 |
 | TwoRoom | `checkpoints/tworoom/` | 98.0 |
@@ -236,17 +236,18 @@ each environment. Each evaluation uses 50 episodes.
 
 ### Bridge-v2: offline latent planning
 
-Offline metrics for the [Bridge-v2 checkpoint][zenodo-checkpoints], averaged
-over 50 trajectories. Place its files in `checkpoints/bridge_v2/`.
+The [Bridge-v2 checkpoint][zenodo-checkpoints] uses one per-frame context query
+and is the epoch-19 checkpoint from a 20-epoch training run with batch size
+192 and learning rate `5e-5`.
+The metrics below are from its recorded offline evaluation on 50 trajectories.
+Place its files in `checkpoints/bridge_v2/`.
 
 | Metric | Value |
 | --- | ---: |
-| Expert recall@1 ↑ | 0.34 |
+| Expert recall@1 ↑ | 0.38 |
 | Expert recall@5 ↑ | 0.64 |
-| Expert recall@10 ↑ | 0.80 |
-| Expert rank percentile ↓ | 0.020 |
-| CEM / expert cost ratio ↓ | 0.806 |
-| Expert vs. shuffled improvement ratio ↑ | 0.055 |
+| Expert recall@10 ↑ | 0.72 |
+| Expert rank percentile ↓ | 0.061 |
 
 ### Loading a checkpoint
 
